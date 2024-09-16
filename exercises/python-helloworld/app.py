@@ -5,13 +5,14 @@ from flask import json
 app = Flask(__name__)
 
 @app.route('/status')
-def status():
+def healthcheck():
     response = app.response_class(
             response=json.dumps({"result":"OK - healthy"}),
             status=200,
             mimetype='application/json'
     )
     app.logger.info('Status request successful')
+    app.logger.debug('DEBUG message')
     return response
 
 @app.route('/metrics')
