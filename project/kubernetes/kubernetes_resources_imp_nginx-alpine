@@ -1,0 +1,13 @@
+# create a namespace with name demo and label tier: test
+kubectl create ns demo
+kubectl label ns demo tier=test
+
+# create a deployment with image nginx:alpine with name ngix-alpine, namespace demo, replicas 3 and labels app: nginx, tag:alpine
+kubectl create deploy nginx-alpine --image=nginx:alpine -r 3 --namespace demo
+kubectl label deploy nginx-alpine app=nginx tag=alpine --namespace demo --overwrite=true
+
+# create a service by exposing the deployment to port 8111 and namespace demo
+kubectl expose deploy nginx-alpine --port=8111 --namespace demo
+
+# crate a configmap with name nginx-version with key-value pair: version=alpine and namespace demo
+kubectl create configmap nginx-version --from-literal=version=alpine --namespace demo

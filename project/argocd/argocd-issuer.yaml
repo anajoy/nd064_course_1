@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: argo-issuer
+  namespace: argocd
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: anajoy@ichbinich.ch
+    privateKeySecretRef:
+      name: argocd-tls-test
+    solvers:
+    - http01:
+        ingress:
+          class: traefik

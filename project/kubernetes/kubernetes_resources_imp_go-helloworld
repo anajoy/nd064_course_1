@@ -1,0 +1,55 @@
+# create a namespace with name demo and label tier: test
+kubectl create ns test-udacity
+kubectl label ns test-udacity tier=test
+
+# create deployment
+kubectl create deploy go-helloworld --image=ikramer/go-helloworld:v1.0.0 -r 3 --namespace test-udacity
+
+# create service
+kubectl expose deploy go-helloworld --port=6111 --namespace test-udacity
+
+# expose service to external localhost (expose from vagrant)
+kubectl port-forward --address 0.0.0.0 deployment/go-helloworld 6111:6111 -n test-udacity
+
+# change the deployment specification to new release go-helloworld:v2.0.0
+kubectl edit deploy go-helloworld -o yaml -n test-udacity
+```
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: go-helloworld
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: go-helloworld
+    spec:
+      containers:
+      - image: ikramer/go-helloworld:v2.0.0
+```
+# create a new serivce port for updated go-helloworld app with port 6112 and expose to localhost outside vagrant
+```
+localhost:/home/vagrant # kubectl get svc -n test-udacity
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+go-helloworld   ClusterIP   10.43.197.31   <none>        6111/TCP   116m
+localhost:/home/vagrant # kubectl expose deploy go-helloworld --port=6112 --namespace test-udacity
+```
+kubectl delete svc go-helloworld -n test-udacity
+kubectl expose deploy go-helloworld --port=6112 --namespace test-udacity
+kubectl port-forward --address=0.0.0.0 deployment/go-helloworld 6112:6112 -n test-udacity
+
+# test inside vagrant with a temporally created test po in cluster
+kubectl expose deploy go-helloworld --port=6112 --target-port=6111 -n test-udacity
+kubectl run test-$RANDOM --namespace test-udacity --rm -it --image=alpine -- sh
+```
+/ # wget -qO- 10.43.139.52:6112
+Go - Hello World/ # ^C
+```

@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: argocd-tls-test
+    namespace: argocd
+spec:
+    secretName: argocd-tls-test
+    issuerRef:
+        name: argo-issuer
+    commonName: argo.ichbinich.ch
+    dnsNames:
+    - argo.ichbinich.ch
