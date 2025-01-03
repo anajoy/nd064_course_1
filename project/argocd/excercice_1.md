@@ -106,3 +106,21 @@ sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
 
 # create login account by following instructions in "create_selfsigned_localhost_certificates.sh"
+
+# Deploy applications to argocd: step 1: deploy crd file to argocd. Application configured is in state unsynced.
+# application nginx
+kubectl apply -f argocd-nginx.yaml
+kubectl get po -n demo
+# sync manually by pressing butting after opening application.
+kubectl get po -n demo
+
+# application python
+kubectl apply -f argocd-python.yaml
+kubectl get po -n default
+# show all pods: python is running on node default
+kubectl get po -A
+
+# access over localhost:
+kubectl port-forward pod/python-helloworld-86687555f9-7dxwh 5111:5000
+# portforwarding did not work for nginx (8111) or python (5000) app
+kubectl get svc -n default -o wide
