@@ -82,4 +82,27 @@ argocd-server-nodeport                    NodePort    10.43.128.71    <none>    
 # retrieve admin password (does not work anymore)
 kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name  |cut -d '/' -f 2
 
+# install TLS certificate
+curl -L -o kubectl-cert-manager.tar.gz https://github.com/cert-manager/cert-manager/releases/download/v1.5.5/kubectl-cert_manager-linux-amd64.tar.gz
+tar xzf kubectl-cert-manager.tar.gz
+mv kubectl-cert_manager /usr/local/bin
+
+# selfsigned certificiate
+kubectl cert-manager create certificaterequest my-sandbox-tls-cr --from-certificate-file  --fetch-certificate --timeout 20m
+
+kubectl cert-manager create certificaterequest my-sandbox-1-tls-cr --from-certificate-file selfsigned-issuer-root-ca.yaml sandbox-1-tls.yaml --fetch-certificate --timeout 20m
+
+mkdir .ssh
+ssh-keygen -b 2048 -t ed25519 -n argocd
+chmod 700 .ssh
+
+kubectl create -n argocd secret tls argocd-server-tls \
+  --cert=/root/.ssh/id_ed25519.pub
+  --key=/root/.ssh/id_ed25519
+
 # workaround by installing argocd CLI
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+
+# create login account by following instructions in "create_selfsigned_localhost_certificates.sh"
