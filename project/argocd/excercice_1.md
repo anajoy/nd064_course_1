@@ -124,3 +124,8 @@ kubectl get po -A
 kubectl port-forward pod/python-helloworld-86687555f9-7dxwh 5111:5000
 # portforwarding did not work for nginx (8111) or python (5000) app
 kubectl get svc -n default -o wide
+
+## deploying python helloworld and nginx-alpine with helm charts
+# delete apps to start from scratch
+kubectl delete all --all -n default --force
+kubectl delete all --all -n demo --force
