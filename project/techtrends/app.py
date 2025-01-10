@@ -6,20 +6,20 @@ from werkzeug.exceptions import abort
 
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
-def get_db_connection(conn_count):
+def get_db_connection():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
-    conn_count += 1
-    return connection, conn_count
+    return connection
 
 # Function to get a post using its ID
 def get_post(post_id,conn_count):
-    connection = get_db_connection(conn_count)
+    connection = get_db_connection()
+    conn_count += 1
     post = connection.execute('SELECT * FROM posts WHERE id = ?',
                         (post_id,)).fetchone()
     connection.close()
     conn_count -= 1
-    return post, conn_count
+    return post
 
 # Define the Flask application
 app = Flask(__name__)
@@ -28,19 +28,20 @@ app.config['SECRET_KEY'] = 'your secret key'
 # Define the main route of the web application
 @app.route('/')
 def index():
+    global conn_count, posts_count
     conn_count=0
-    connection = get_db_connection(conn_count)
+    connection = get_db_connection()
+    conn_count += 1
     posts = connection.execute('SELECT * FROM posts').fetchall()
-    posts_count = connection.execute('SELECT * FROM posts').rowcount
+    posts_count = len(posts)
     connection.close()
     conn_count -= 1
-    return render_template('index.html', posts=posts), posts_count, conn_count
-
+    return render_template('index.html', posts=posts)
 # Define how each individual article is rendered
 # If the post ID is not found a 404 page is shown
 @app.route('/<int:post_id>')
 def post(post_id):
-    post = get_post(post_id)
+    post = get_post(post_id, conn_count)
     if post is None:
       logger.info("A non-existing article is accessed and a 404 page is returned.")
       logger.debug("A non-existing article is accessed and a 404 page is returned.")
@@ -59,15 +60,17 @@ def about():
 
 # Define the post creation functionality
 @app.route('/create', methods=('GET', 'POST'))
-def create(conn_count):
+def create():
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
-
+        global conn_count
+        conn_count=0
         if not title:
             flash('Title is required!')
         else:
-            connection = get_db_connection(conn_count)
+            connection = get_db_connection()
+            conn_count += 1
             connection.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
                          (title, content))
             connection.commit()
@@ -75,7 +78,7 @@ def create(conn_count):
             conn_count -= 1
             logger.info("A new article is created. Title: title=%s", title)
             logger.debug("A new article is created. Title: title=%s", title)
-            return redirect(url_for('index')), conn_count
+            return redirect(url_for('index'))
 
     return render_template('create.html')
 
@@ -91,7 +94,7 @@ def healthcheck():
     return response
 
 @app.route('/metrics')
-def metrics(conn_count, posts_count):
+def metrics():
     response = app.response_class(
             response=json.dumps({"db_connection_count": conn_count, "post_count": posts_count}),
             status=200,
