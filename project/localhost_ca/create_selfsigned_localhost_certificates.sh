@@ -1,4 +1,5 @@
 ## run this command on your wsl2 instance in directory D:\repo\udacity\nd064_course_1\project\localhost_ca
+# for details see: https://stackoverflow.com/a/67614862/28897488
 
 openssl req -x509 -out localhost.crt -keyout localhost.key \
   -newkey rsa:2048 -nodes -sha256 \
