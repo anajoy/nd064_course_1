@@ -1,0 +1,9 @@
+apiVersion: v1
+name: techtrends
+description: Install techtrends application env staging and prod as part of project
+keywords:
+- techtrends
+version: 1.0.0
+maintainers:
+- name: ikramer
+  email: anajoy@ichbinich.ch
