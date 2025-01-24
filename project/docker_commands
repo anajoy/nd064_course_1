@@ -1,17 +1,18 @@
 ## Docker commands used to build the application
 # TODO: insert the docker build command
-docker build -t techtrends:1.0 .
+docker build -t techtrends:1.0.1 .
 
 ## Docker commands used to run the application
 # TODO: insert the docker run command
-docker run -d --name python-techtrends -p 7111:3111 techtrends:1.0
+docker run -d --name python-techtrends-1 -p 7111:3111 techtrends:1.0.1
 
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
-docker logs python-techtrends
+docker logs -f python-techtrends-1
 
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container
+phaeton@SCHNABEL:/mnt/d/repo/udacity/nd064_course_1/project/techtrends (main)$ docker logs -f python-techtrends-1
  * Serving Flask app 'app' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -19,56 +20,60 @@ docker logs python-techtrends
  * Debug mode: off
  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
- * Running on http://172.17.0.2:7111/ (Press CTRL+C to quit)
-172.17.0.1 - - [14/Jan/2025 21:51:15] "GET /healthz HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:51:18] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:51:18] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:51 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c698f0> retrieved
-172.17.0.1 - - [14/Jan/2025 21:51:20] "GET /2 HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:51:20] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [14/Jan/2025 21:51:29] "GET /create HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:51:29] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:52 - INFO - A new article is created. Title: title=My first article
-172.17.0.1 - - [14/Jan/2025 21:52:04] "POST /create HTTP/1.1" 302 -
-172.17.0.1 - - [14/Jan/2025 21:52:04] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:04] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:52 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c69870> retrieved
-172.17.0.1 - - [14/Jan/2025 21:52:07] "GET /7 HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:07] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:52 - INFO - The "About Us" page is retrieved.
-172.17.0.1 - - [14/Jan/2025 21:52:17] "GET /about HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:17] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [14/Jan/2025 21:52:26] "GET /metrics HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:40] "GET /create HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:40] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:52 - INFO - A new article is created. Title: title=My second article
-172.17.0.1 - - [14/Jan/2025 21:52:57] "POST /create HTTP/1.1" 302 -
-172.17.0.1 - - [14/Jan/2025 21:52:57] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:52:57] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-14 21:53 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c69730> retrieved
-172.17.0.1 - - [14/Jan/2025 21:53:04] "GET /8 HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:53:04] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [14/Jan/2025 21:53:16] "GET /metrics HTTP/1.1" 200 -
-172.17.0.1 - - [14/Jan/2025 21:53:26] "GET /healthz HTTP/1.1" 200 -
+ * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+172.17.0.1 - - [24/Jan/2025 09:07:08] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:07:08] "GET /static/css/main.css HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:07:08] "GET /favicon.ico HTTP/1.1" 404 -
+2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
+172.17.0.1 - - [24/Jan/2025 09:10:16] "GET /1 HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:10:16] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:10:27] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:10:27] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
+172.17.0.1 - - [24/Jan/2025 09:10:32] "GET /6 HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:10:33] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:10:49] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:10:49] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-24 09:11 - INFO - A non-existing article is accessed and a 404 page is returned.
+172.17.0.1 - - [24/Jan/2025 09:11:10] "GET /7 HTTP/1.1" 404 -
+172.17.0.1 - - [24/Jan/2025 09:11:10] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:11:31] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:11:31] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-24 09:11 - INFO - The "About Us" page is retrieved.
+172.17.0.1 - - [24/Jan/2025 09:11:38] "GET /about HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:11:38] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:11:45] "GET /create HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:11:45] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-24 09:12 - INFO - A new article is created. Title: title=My new story
+172.17.0.1 - - [24/Jan/2025 09:12:22] "POST /create HTTP/1.1" 302 -
+172.17.0.1 - - [24/Jan/2025 09:12:22] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:12:22] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-24 09:12 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
+172.17.0.1 - - [24/Jan/2025 09:12:44] "GET /7 HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:12:44] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:13:10] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:13:10] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [24/Jan/2025 09:13:31] "GET /healthz HTTP/1.1" 200 -
+172.17.0.1 - - [24/Jan/2025 09:13:44] "GET /metrics HTTP/1.1" 200 -
 
 # get app file log
-docker exec -it python-techtrends /bin/bash
+docker exec -it python-techtrends-1 /bin/bash
 
-root@6508657bc986:/app# cat app.log
-2025-01-14 21:51 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c698f0> retrieved
-2025-01-14 21:51 - DEBUG - Article post=<sqlite3.Row object at 0x7f8e56c698f0> retrieved
-2025-01-14 21:52 - INFO - A new article is created. Title: title=My first article
-2025-01-14 21:52 - DEBUG - A new article is created. Title: title=My first article
-2025-01-14 21:52 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c69870> retrieved
-2025-01-14 21:52 - DEBUG - Article post=<sqlite3.Row object at 0x7f8e56c69870> retrieved
-2025-01-14 21:52 - INFO - The "About Us" page is retrieved.
-2025-01-14 21:52 - DEBUG - The "About Us" page is retrieved.
-2025-01-14 21:52 - INFO - A new article is created. Title: title=My second article
-2025-01-14 21:52 - DEBUG - A new article is created. Title: title=My second article
-2025-01-14 21:53 - INFO - Article post=<sqlite3.Row object at 0x7f8e56c69730> retrieved
-2025-01-14 21:53 - DEBUG - Article post=<sqlite3.Row object at 0x7f8e56c69730> retrieved
+root@0bc5a2e96902:/app# cat app.log
+2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
+2025-01-24 09:10 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
+2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
+2025-01-24 09:10 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
+2025-01-24 09:11 - INFO - A non-existing article is accessed and a 404 page is returned.
+2025-01-24 09:11 - DEBUG - A non-existing article is accessed and a 404 page is returned.
+2025-01-24 09:11 - INFO - The "About Us" page is retrieved.
+2025-01-24 09:11 - DEBUG - The "About Us" page is retrieved.
+2025-01-24 09:12 - INFO - A new article is created. Title: title=My new story
+2025-01-24 09:12 - DEBUG - A new article is created. Title: title=My new story
+2025-01-24 09:12 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
+2025-01-24 09:12 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
 
 # tag and push image to dockerhub
-docker tag techtrends:1.0 ikramer/techtrends:v1.0.0
+docker tag techtrends:1.0.1 ikramer/techtrends:v1.0.1
 docker login
-docker image push ikramer/techtrends:v1.0.0
+docker image push ikramer/techtrends:v1.0.1
