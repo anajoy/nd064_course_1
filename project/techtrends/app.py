@@ -18,7 +18,7 @@ def get_post(post_id,conn_count):
     post = connection.execute('SELECT * FROM posts WHERE id = ?',
                         (post_id,)).fetchone()
     connection.close()
-    conn_count -= 1
+    # conn_count -= 1
     return post
 
 # Define the Flask application
@@ -35,7 +35,7 @@ def index():
     posts = connection.execute('SELECT * FROM posts').fetchall()
     posts_count = len(posts)
     connection.close()
-    conn_count -= 1
+    # conn_count -= 1
     return render_template('index.html', posts=posts)
 # Define how each individual article is rendered
 # If the post ID is not found a 404 page is shown
@@ -75,7 +75,7 @@ def create():
                          (title, content))
             connection.commit()
             connection.close()
-            conn_count -= 1
+            # conn_count -= 1
             logger.info("A new article is created. Title: title=%s", title)
             logger.debug("A new article is created. Title: title=%s", title)
             return redirect(url_for('index'))
