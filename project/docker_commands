@@ -12,7 +12,7 @@ docker logs -f python-techtrends-1
 
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container
-phaeton@SCHNABEL:/mnt/d/repo/udacity/nd064_course_1/project/techtrends (main)$ docker logs -f python-techtrends-1
+phaeton@SCHNABEL:/mnt/d/repo/udacity/nd064_course_1/project/techtrends (main)$ docker logs python-techtrends-2
  * Serving Flask app 'app' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
@@ -21,59 +21,46 @@ phaeton@SCHNABEL:/mnt/d/repo/udacity/nd064_course_1/project/techtrends (main)$ d
  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
-172.17.0.1 - - [24/Jan/2025 09:07:08] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:07:08] "GET /static/css/main.css HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:07:08] "GET /favicon.ico HTTP/1.1" 404 -
-2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
-172.17.0.1 - - [24/Jan/2025 09:10:16] "GET /1 HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:10:16] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:10:27] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:10:27] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
-172.17.0.1 - - [24/Jan/2025 09:10:32] "GET /6 HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:10:33] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:10:49] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:10:49] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-24 09:11 - INFO - A non-existing article is accessed and a 404 page is returned.
-172.17.0.1 - - [24/Jan/2025 09:11:10] "GET /7 HTTP/1.1" 404 -
-172.17.0.1 - - [24/Jan/2025 09:11:10] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:11:31] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:11:31] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-24 09:11 - INFO - The "About Us" page is retrieved.
-172.17.0.1 - - [24/Jan/2025 09:11:38] "GET /about HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:11:38] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:11:45] "GET /create HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:11:45] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-24 09:12 - INFO - A new article is created. Title: title=My new story
-172.17.0.1 - - [24/Jan/2025 09:12:22] "POST /create HTTP/1.1" 302 -
-172.17.0.1 - - [24/Jan/2025 09:12:22] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:12:22] "GET /static/css/main.css HTTP/1.1" 304 -
-2025-01-24 09:12 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
-172.17.0.1 - - [24/Jan/2025 09:12:44] "GET /7 HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:12:44] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:13:10] "GET / HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:13:10] "GET /static/css/main.css HTTP/1.1" 304 -
-172.17.0.1 - - [24/Jan/2025 09:13:31] "GET /healthz HTTP/1.1" 200 -
-172.17.0.1 - - [24/Jan/2025 09:13:44] "GET /metrics HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:04:45] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:04:45] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:05:05] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:05] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-28 14:05 - INFO - The "About Us" page is retrieved.
+172.17.0.1 - - [28/Jan/2025 14:05:14] "GET /about HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:14] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:05:19] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:19] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:05:24] "GET /create HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:24] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-28 14:05 - INFO - A new article is created. Title: title=A new article
+172.17.0.1 - - [28/Jan/2025 14:05:50] "POST /create HTTP/1.1" 302 -
+172.17.0.1 - - [28/Jan/2025 14:05:50] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:50] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:05:56] "GET /7 HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:05:56] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:06:04] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:06:04] "GET /static/css/main.css HTTP/1.1" 304 -
+2025-01-28 14:06 - ERROR - A non-existing article is accessed and a 404 page is returned.
+172.17.0.1 - - [28/Jan/2025 14:06:13] "GET /8 HTTP/1.1" 404 -
+172.17.0.1 - - [28/Jan/2025 14:06:13] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:06:17] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:06:17] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:06:48] "GET /healthz HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:06:55] "GET /metrics HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:07:11] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [28/Jan/2025 14:07:11] "GET /static/css/main.css HTTP/1.1" 304 -
+172.17.0.1 - - [28/Jan/2025 14:07:25] "GET /metrics HTTP/1.1" 200 -
 
 # get app file log
-docker exec -it python-techtrends-1 /bin/bash
+docker exec -it python-techtrends-2 /bin/bash
 
-root@0bc5a2e96902:/app# cat app.log
-2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
-2025-01-24 09:10 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d43bd0> retrieved
-2025-01-24 09:10 - INFO - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
-2025-01-24 09:10 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d438f0> retrieved
-2025-01-24 09:11 - INFO - A non-existing article is accessed and a 404 page is returned.
-2025-01-24 09:11 - DEBUG - A non-existing article is accessed and a 404 page is returned.
-2025-01-24 09:11 - INFO - The "About Us" page is retrieved.
-2025-01-24 09:11 - DEBUG - The "About Us" page is retrieved.
-2025-01-24 09:12 - INFO - A new article is created. Title: title=My new story
-2025-01-24 09:12 - DEBUG - A new article is created. Title: title=My new story
-2025-01-24 09:12 - INFO - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
-2025-01-24 09:12 - DEBUG - Article post=<sqlite3.Row object at 0x7fa060d43750> retrieved
+root@3e7c3b169fbe:/app# cat app.log
+2025-01-28 14:05 - INFO - The "About Us" page is retrieved.
+2025-01-28 14:05 - INFO - A new article is created. Title: title=A new article
+2025-01-28 14:05 - DEBUG - Article post=<sqlite3.Row object at 0x7fa271a0b7f0> retrieved
+2025-01-28 14:06 - ERROR - A non-existing article is accessed and a 404 page is returned.
 
 # tag and push image to dockerhub
-docker tag techtrends:1.0.1 ikramer/techtrends:v1.0.1
+docker tag techtrends:1.0.2 ikramer/techtrends:v1.0.2
 docker login
-docker image push ikramer/techtrends:v1.0.1
+docker image push ikramer/techtrends:v1.0.2
